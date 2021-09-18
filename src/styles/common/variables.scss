@@ -1,0 +1,32 @@
+@import './colors';
+@import './fontVariables.scss';
+
+/* Breakpoints
+************************************************************** */
+
+$breakpoints: (
+  'xxs': 375px,
+  'xs': 480px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxlg': 1280px,
+  'xlx': 1440px,
+  'xxl': 1600px,
+) !default;
+
+/* Wrappers
+************************************************************** */
+
+$wrapper: 1300px;
+$wrapper-mobile: 480px;
+
+/* Sizes
+************************************************************** */
+
+$gap-small: 15px;
+$gap-indent: 8px;
+
+$text-block-width-on-tablet: 61%;
+$text-block-width-on-desktop: 55%;

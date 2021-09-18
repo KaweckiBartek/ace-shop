@@ -1,0 +1,96 @@
+@mixin button($backgroundColor: $c-accentPrimary, $textColor: $c-textColorInverse) {
+  font-size: 1rem;
+  font-weight: 500;
+  color: $textColor;
+  display: inline-block;
+  padding: $gap-xxsmall;
+  cursor: pointer;
+  background-color: $backgroundColor;
+  border: 0;
+  border-radius: 6px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: lighten($backgroundColor, 10%);
+  }
+}
+
+@mixin icon($icon) {
+  font-family: $font-fontAwesome;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1;
+  text-rendering: auto;
+  display: inline-block;
+  content: $icon;
+  font-variant: normal;
+}
+
+@mixin font-size($target, $context: $font-size-base) {
+  font-size: ($target / $context) * 1rem;
+}
+
+@mixin breakpoint($point) {
+  $query-direction: '';
+  $query-point: '';
+  $query-size: '';
+
+  @if str-index($point, '-up') {
+    $query-direction: 'min-width';
+    $query-point: str-slice($point, 0, str-length($point) - str-length('-up'));
+    $query-size: map-get($breakpoints, $query-point);
+  } @else {
+    @if str-index($point, '-down') {
+      $query-point: str-slice($point, 0, str-length($point) - str-length('-down'));
+    } @else {
+      $query-point: $point;
+    }
+
+    $query-direction: 'max-width';
+    $query-size: map-get($breakpoints, $query-point) - 1px;
+  }
+
+  @media screen and (#{$query-direction}: #{$query-size}) {
+    @content;
+  }
+}
+
+@mixin btn-reset {
+  padding: 0;
+  background: none;
+  border: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin for-all-children {
+  &,
+  & * {
+    @content;
+  }
+}
+
+@mixin outline-on-focus($outline-color: black) {
+  &:focus {
+    outline: 1px solid $outline-color;
+    outline-offset: 5px;
+  }
+}
+
+@mixin link($link-color) {
+  color: $link-color;
+
+  &,
+  &:active,
+  &:visited {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,87 @@
+// @import './variables.scss';
+
+// /* Grid - media queries
+// +************************************************************** */
+
+// @function create-breakpoint($grid-name) {
+//   @return ('screen and (min-width: #{map-get($breakpoints, $grid-name)})');
+// }
+
+// $grid-xs: create-breakpoint('xs');
+// $grid-sm: create-breakpoint('sm');
+// $grid-md: create-breakpoint('md');
+// $grid-lg: create-breakpoint('lg');
+// $grid-xl: create-breakpoint('xl');
+// $grid-xxl: create-breakpoint('xxl');
+
+// /* Grid - rows and columns
+// +************************************************************** */
+
+// $columns: 12;
+
+// @mixin grid($name) {
+//   @for $i from 1 through $columns {
+//     .col--#{$name}#{$i} {
+//       width: (100 / ($columns / $i)) * 1%;
+//     }
+//   }
+// }
+
+// @include grid('sm');
+
+// @media #{$grid-md} {
+//   @include grid('md');
+// }
+
+// @media #{$grid-lg} {
+//   @include grid('lg');
+// }
+
+// @media #{$grid-xl} {
+//   @include grid('xl');
+// }
+
+// .container {
+//   width: 100%;
+//   @media #{$grid-md} {
+//     width: 736px;
+//   }
+
+//   @media #{$grid-lg} {
+//     width: 960px;
+//   }
+
+//   @media #{$grid-xl} {
+//     width: 1156px;
+//   }
+//   margin: 0 auto;
+
+//   &.container--fluid {
+//     width: 100%;
+//   }
+//   padding: 0;
+// }
+
+// .row {
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: stretch;
+//   justify-content: space-between;
+
+//   &--start {
+//     justify-content: flex-start;
+//   }
+// }
+
+// .col {
+//   margin: 0.625rem 0;
+
+//   &--no-gutters {
+//     margin: 0;
+//     padding: 0;
+//   }
+
+//   &--no-padding {
+//     padding: 0;
+//   }
+// }
