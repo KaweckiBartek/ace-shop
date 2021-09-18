@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react"
 import { IProductsData } from "../../data/models"
 import { productsData } from "../../data/products"
 import Header from "../Header"
+import Products from "../Products"
 
 import { IShopComponentProps } from "./models"
 import "./Shop.scss"
@@ -38,7 +39,7 @@ const Shop: FC<IShopComponentProps> = () => {
         <SearchList {...{ productsList, searchRef }} />
       )} */}
 
-      {/* ProductList */}
+      <Products {...{ productsList }} />
       {/* Bucket */}
     </div>
   )
