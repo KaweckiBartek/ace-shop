@@ -1,4 +1,7 @@
-@mixin button($backgroundColor: $c-accentPrimary, $textColor: $c-textColorInverse) {
+@mixin button(
+  $backgroundColor: $c-accentPrimary,
+  $textColor: $c-textColorInverse
+) {
   font-size: 1rem;
   font-weight: 500;
   color: $textColor;
@@ -13,6 +16,59 @@
   &:hover {
     background-color: lighten($backgroundColor, 10%);
   }
+}
+
+@mixin myTransform($arg) {
+  transform: $arg;
+  -webkit-transform: $arg;
+  -ms-transform: $arg;
+}
+
+@mixin myFlex() {
+  $prefixes: (-webkit-box, -ms-flexbox, -webkit-flex, flex);
+  @each $prefix in $prefixes {
+    display: $prefix;
+  }
+}
+
+@mixin flexDirection($arg) {
+  $map: (
+    row: (
+      horizontal,
+      normal,
+      row,
+    ),
+    row-reverse: (
+      horizontal,
+      reverse,
+      row-reverse,
+    ),
+    column: (
+      vertical,
+      normal,
+      column,
+    ),
+    column-reverse: (
+      vertical,
+      reverse,
+      column-reverse,
+    ),
+    initial: (
+      initial,
+      initial,
+      initial,
+    ),
+    inherit: (
+      inherit,
+      inherit,
+      inherit,
+    ),
+  );
+
+  flex-direction: $arg;
+  -webkit-box-orient: nth(map-get($map, $arg), 1);
+  -webkit-box-direction: nth(map-get($map, $arg), 2);
+  -ms-flex-direction: nth(map-get($map, $arg), 3);
 }
 
 @mixin icon($icon) {
@@ -33,22 +89,26 @@
 }
 
 @mixin breakpoint($point) {
-  $query-direction: '';
-  $query-point: '';
-  $query-size: '';
+  $query-direction: "";
+  $query-point: "";
+  $query-size: "";
 
-  @if str-index($point, '-up') {
-    $query-direction: 'min-width';
-    $query-point: str-slice($point, 0, str-length($point) - str-length('-up'));
+  @if str-index($point, "-up") {
+    $query-direction: "min-width";
+    $query-point: str-slice($point, 0, str-length($point) - str-length("-up"));
     $query-size: map-get($breakpoints, $query-point);
   } @else {
-    @if str-index($point, '-down') {
-      $query-point: str-slice($point, 0, str-length($point) - str-length('-down'));
+    @if str-index($point, "-down") {
+      $query-point: str-slice(
+        $point,
+        0,
+        str-length($point) - str-length("-down")
+      );
     } @else {
       $query-point: $point;
     }
 
-    $query-direction: 'max-width';
+    $query-direction: "max-width";
     $query-size: map-get($breakpoints, $query-point) - 1px;
   }
 

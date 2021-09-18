@@ -1,0 +1,7 @@
+@import "../../styles/common/component-set.scss";
+
+.shop {
+  width: 100%;
+  @include breakpoint(md-up) {
+  }
+}

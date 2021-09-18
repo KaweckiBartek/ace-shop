@@ -1,0 +1,14 @@
+@import "../../styles/common/component-set.scss";
+
+.header {
+  @include myFlex();
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120px;
+  border-radius: 20px 20px 0 0;
+  background-color: $c-rosy-pink;
+
+  @include breakpoint(md-up) {
+  }
+}

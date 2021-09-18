@@ -1,9 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-
 import Layout from "../components/Layout/Layout"
 import Seo from "../components/Seo/Seo"
+import Shop from "../components/Shop"
 
 const HomePage = () => (
   <Layout>
@@ -16,6 +15,7 @@ const HomePage = () => (
       alt="A Gatsby astronaut"
       style={{ marginBottom: `1.45rem` }}
     />
+    <Shop />
   </Layout>
 )
 
