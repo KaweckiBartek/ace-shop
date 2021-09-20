@@ -1,10 +1,12 @@
 import React, { FC, useEffect, useState } from "react"
 import { IProductsData } from "../../data/models"
 import { productsData } from "../../data/products"
+import Bucket from "../Bucket"
 import Header from "../Header"
+import useLocalStorage from "../hooks/useLocalStorage"
 import Products from "../Products"
 
-import { IShopComponentProps } from "./models"
+import { IBucketList, IShopComponentProps } from "./models"
 import "./Shop.scss"
 
 const Shop: FC<IShopComponentProps> = () => {
@@ -12,7 +14,13 @@ const Shop: FC<IShopComponentProps> = () => {
   const [productsListDefault, setProductsListDefault] = useState<
     IProductsData[]
   >([])
+  const [bucketLocalStorage, setBucketLocalStorage] = useLocalStorage(
+    "bucket",
+    ""
+  )
   const [productsList, setProductsList] = useState<IProductsData[]>([])
+  const [bucketList, setBucketList] =
+    useState<IBucketList[]>(bucketLocalStorage)
 
   useEffect(() => {
     setProductsListDefault(productsData)
@@ -29,18 +37,40 @@ const Shop: FC<IShopComponentProps> = () => {
     setProductsList(filteredTitle)
   }
 
-  console.log(productsList)
-  console.log(productsListDefault)
+  const handleAddToBucket = (product: IProductsData) => {
+    const exist = bucketList.find(bucketItem => bucketItem.id === product.id)
+
+    if (exist) {
+      setBucketList(
+        bucketList.map(bucketItem =>
+          bucketItem?.id === product?.id
+            ? { ...exist, qty: exist.qty + 1 }
+            : bucketItem
+        )
+      )
+    } else {
+      setBucketList([...bucketList, { ...product, qty: 1 }])
+    }
+  }
+
+  useEffect(() => {
+    setBucketLocalStorage(bucketList)
+  }, [bucketList])
+
+  // localStorage.clear()
 
   return (
     <div className="shop">
-      <Header {...{ input, updateInput, productsList, productsListDefault }} />
-      {/* {input.length > 0 && open && (
-        <SearchList {...{ productsList, searchRef }} />
-      )} */}
+      <div className="shop__left">
+        <Header
+          {...{ input, updateInput, productsList, productsListDefault }}
+        />
 
-      <Products {...{ productsList }} />
-      {/* Bucket */}
+        <Products {...{ productsList, handleAddToBucket }} />
+      </div>
+      <div className="shop__right">
+        <Bucket {...{ bucketList }} />
+      </div>
     </div>
   )
 }

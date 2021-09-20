@@ -8,4 +8,5 @@ export interface IProductCardComponentProps {
     description: string
     price: number
   }
+  handleAddToBucket: (arg: IProductsData) => void
 }

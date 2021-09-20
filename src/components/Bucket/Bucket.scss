@@ -1,0 +1,13 @@
+@import "../../styles/common/component-set.scss";
+
+.bucket {
+  @include myFlex();
+  flex-direction: column;
+  width: 350px;
+  min-height: 300px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $c-rosy-pink;
+  border-radius: 20px;
+  margin-left: 20px;
+}

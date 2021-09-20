@@ -4,8 +4,11 @@ import "./ProductCard.scss"
 import Button from "../Button"
 
 const ProductCard: FC<IProductCardComponentProps> = ({
-  product: { id, name, imageUrl, description, price },
+  product,
+  handleAddToBucket,
 }) => {
+  const { name, imageUrl, description, price } = product
+
   return (
     <div className="product-card">
       <div className="product-card__price-wrapper">
@@ -18,7 +21,11 @@ const ProductCard: FC<IProductCardComponentProps> = ({
         width={200}
         alt="product image"
       />
-      <Button btnColorVariant="outline-rose" ariaLabel="add to busket">
+      <Button
+        handler={() => handleAddToBucket(product)}
+        btnColorVariant="outline-rose"
+        ariaLabel="add to busket"
+      >
         Do koszyka
       </Button>
     </div>
