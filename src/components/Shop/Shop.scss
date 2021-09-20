@@ -5,4 +5,7 @@
   width: 100%;
   @include breakpoint(md-up) {
   }
+  &__left {
+    width: 100%;
+  }
 }

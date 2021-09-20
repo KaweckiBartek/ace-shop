@@ -1,5 +1,7 @@
-import { IProductsData } from "../../data/models"
+import { IBucketList } from "./../Shop/models.d"
 
 export interface IBucketComponentProps {
-  bucketList: IProductsData[]
+  bucketList: IBucketList[]
+  handleAddToBucket: (arg: IBucketList) => void
+  handleRemoveFromBucket: (arg: IBucketList) => void
 }

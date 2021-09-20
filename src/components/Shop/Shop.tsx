@@ -53,6 +53,24 @@ const Shop: FC<IShopComponentProps> = () => {
     }
   }
 
+  const handleRemoveFromBucket = (product: IProductsData) => {
+    const exist = bucketList.find(bucketItem => bucketItem.id === product.id)
+
+    if (exist?.qty === 1) {
+      setBucketList(
+        bucketList.filter(bucketItem => bucketItem.id !== product.id)
+      )
+    } else {
+      setBucketList(
+        bucketList.map(bucketItem =>
+          bucketItem?.id === product?.id
+            ? { ...exist, qty: exist?.qty - 1 }
+            : bucketItem
+        )
+      )
+    }
+  }
+
   useEffect(() => {
     setBucketLocalStorage(bucketList)
   }, [bucketList])
@@ -69,7 +87,9 @@ const Shop: FC<IShopComponentProps> = () => {
         <Products {...{ productsList, handleAddToBucket }} />
       </div>
       <div className="shop__right">
-        <Bucket {...{ bucketList }} />
+        <Bucket
+          {...{ bucketList, handleAddToBucket, handleRemoveFromBucket }}
+        />
       </div>
     </div>
   )
